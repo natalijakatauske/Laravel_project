@@ -8,16 +8,16 @@
 
 <div class="container text-center">
     <div class="row">
-        <div class="col card" style="margin: 1rem;">
+        <div class="col card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem;">
             @if ($recipe->image)
                 <img src="{{ asset($recipe->image) }}">
             @else
                 No image
             @endif
         </div>
-        <div class="col card" style="margin: 1rem;">
+        <div class="col card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem;">
             <div class="card-body">
-                <h4 class="card-title">{{ $recipe->name }}</h4>
+                <h4 class="card-title" style="font-weight:bold">{{ $recipe->name }}</h4>
                 <div class="card-text">Category: 
                     @if($recipe->category)
                         {{ $recipe->category->name }}
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col card" style="margin: 1rem;">
+        <div class="col card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem;">
             <div class="card-body">
                 <div class="card-text">{{ $recipe->description }}</div>
             </div>

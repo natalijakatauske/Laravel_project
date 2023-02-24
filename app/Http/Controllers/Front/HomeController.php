@@ -11,11 +11,8 @@ class HomeController extends Controller
 {
     public function index() //: View
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::paginate(8);
 
         return view('front/home', compact('recipes'));
-        // return view('public/home', [
-        //     'fist' => 'month'
-        // ]);
     }
 }

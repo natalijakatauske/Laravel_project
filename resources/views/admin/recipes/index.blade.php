@@ -30,7 +30,7 @@
 
         <div class="col-12 mt-2">        
             <button type="submit" class="btn btn-secondary">Filter</button>  
-            <a href="{{ route('admin.recipes') }}">Clear filter</a>
+            <a href="{{ route('admin.recipes') }}" class="btn btn-dark">Clear filter</a>
         </div>  
     </form>
 </div>
