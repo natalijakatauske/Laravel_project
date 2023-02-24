@@ -37,55 +37,26 @@ class AdminRecipeController extends Controller
         ]);
     }
 
+    public function show($id): View
+    {
+        $recipe = Recipe::find($id);
+
+        if ($recipe === null) {
+            abort(404);
+        }
+
+        return view('admin/recipes/show', [
+            'recipe' => $recipe
+        ]);
+    }
+
 
     public function create(): View
     {
         $ingredients = Ingredient::all();
         $categories = Category::where('is_active', '=', 1)->get();
 
-        return view('admin.recipes.create', [
-            'ingredients' => $ingredients,
-            'categories' => $categories,
-        ]);
-    }
-
-    public function edit(int $id, Request $request)
-    {
-        $recipe = Recipe::find($id);
-        $ingredients = Ingredient::all();
-        $categories = Category::where('is_active', '=', 1)->get();
-
-        if ($recipe === null) {
-            abort(404);
-        }
-
-        if ($request->isMethod('post')) {
-            $request->validate([
-                'name' => 'required|max:255',
-                'category_id' => 'required',
-                'ingredient_id' => 'required',
-                'image' => [File::types([
-                    'jpg', 'jpeg', 'jfif', 'webp', 'avif', 'svg', 'gif', 'png', 'tif', 'tiff', 'bmp'
-                ])],
-                ]);
-            
-                $recipe->uptade($request->all());
-                $recipe->ingredients()->detach();
-
-                $file = $request->file('image');
-                $path = $file->store('recipe_images');
-                Storage::disk('public')->put('katalogas', $file);
-                $recipe->image = $path;
-                $recipe->save();
-        
-                $ingredients = Ingredient::find($request->post('ingredient_id'));
-                $recipe->ingredients()->attach($ingredients);
-        
-                return redirect('admin.recipes')->with('success', 'Recipe uptades successfully!!!');        
-        }
-       
-        return view('admin.recipes.edit', [
-            'recipe' => $recipe,
+        return view('admin/recipes/create', [
             'ingredients' => $ingredients,
             'categories' => $categories,
         ]);
@@ -104,14 +75,73 @@ class AdminRecipeController extends Controller
         $recipe = Recipe::create($request->all());
 
         $file = $request->file('image');
-        $path = Storage::disk('public')->put('recipe_images', $file);
+        $path = Storage::disk('public')->putFile('recipe_images', $file);
         $recipe->image = $path;
         $recipe->save();
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
         $recipe->ingredients()->attach($ingredients);
+        // $recipe->is_active = $request->post('is_active', false);
 
+        return redirect('admin/recipes')->with('success', 'Book created successfully!');
 
+    }
 
+    public function edit(int $id, Request $request)
+    {
+        $recipe = Recipe::find($id);
+
+        $ingredients = Ingredient::all();
+        $categories = Category::where('is_active', '=', 1)->get();
+
+        if ($recipe === null) {
+            abort(404);
+        }
+
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'name' => 'required|max:255',
+                'category_id' => 'required',
+                'ingredient_id' => 'required',
+                'image' => [File::types([
+                    'jpg', 'jpeg', 'jfif', 'webp', 'avif', 'svg', 'gif', 'png', 'tif', 'tiff', 'bmp'
+                ])],
+                ]);
+            
+            $recipe->uptade($request->all());
+            $recipe->ingredients()->detach();
+
+            if($request->file('image')) {
+                $file = $request->file('image');
+                $path = $file->store('recipe_images');
+                Storage::disk('public')->put('katalogas', $file);
+                $recipe->image = $path;
+            }
+
+            $recipe->save();
+        
+            $ingredients = Ingredient::find($request->post('ingredient_id'));
+            $recipe->ingredients()->attach($ingredients);
+        
+            return redirect('admin.recipes')->with('success', 'Recipe uptades successfully!!!');        
+        }
+       
+        return view('admin/recipes/edit', [
+            'recipe' => $recipe,
+            'ingredients' => $ingredients,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function delete(int $id)
+    {
+        $recipe = Recipe::find($id);
+
+        if ($recipe === null) {
+            abort(404);
+        }
+        $recipe->delete();
+        
+        return redirect('admin/recipes')->with('success', 'Category removed successfully!');
     }
 }

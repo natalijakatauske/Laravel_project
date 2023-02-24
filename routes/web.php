@@ -25,6 +25,7 @@ use App\Http\Controllers\Front\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('public.home');
 
 Route::get('recipes', [RecipeController::class, 'index'])->name('public.recipes');
+Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('public.recipe.show');
 
 
 Route::get('admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipes');

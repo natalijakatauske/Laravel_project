@@ -12,14 +12,14 @@
     <form action="{{ route('admin.recipes') }}" method="get"> 
         
         <div class="col-12">    
-            <label class="form-label">Search recipe name:</label>
+            <label class="form-label">Search recipe by name:</label>
             <input type="text" name="name" value="{{ $name }}" class="form-control" placeholder="Recipe name">
         </div>
 
         <div class="col-12">        
             <label class="form-label">Category:</label>        
             <select name="category_id" class="form-control">
-                <option> </option>            
+                <option value=""> </option>            
                 @foreach($categories as $category)
                 <option @if($category->id == $category_id) selected @endif
                     value="{{ $category->id }}">{{ $category->name }}
@@ -53,11 +53,11 @@
     <tr>
         <th scope="row">{{ $recipe->id }}</th>
         <td class="list-group-flush">
-            <a href="{{ route('admin.recipes', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ route('admin.recipe.show', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td>
             @if ($recipe->image)
-                <img src="{{ asset($recipe->image) }}">
+                <img src="{{ asset('storage/' . $recipe->image) }}" class="img-fluid">
             @else
                 No image
             @endif

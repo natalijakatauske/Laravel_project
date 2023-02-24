@@ -23,9 +23,7 @@
     @foreach($ingredients as $ingredient)
     <tr>
         <th scope="row">{{ $ingredient->id }}</th>
-        <td class="list-group-flush" >
-            <a href="{{ route('admin.ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->name }}</a>
-        </td>
+        <td class="list-group-flush" >{{ $ingredient->name }}</td>
         {{-- <td class="list-group-flush" >
             <a href="{{ route('admin.ingredients', ['id' => $ingredient->id]) }}" class="list-group-item list-group-item-action">{{ $ingredient->is_active }}</a>
         </td> --}}

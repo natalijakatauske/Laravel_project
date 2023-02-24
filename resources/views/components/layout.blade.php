@@ -4,10 +4,10 @@
     @include('components.head')
 </head>
 
-<body>
+<body style="background-color:whitesmoke">
     <nav class="navbar navbar-expand-md navbar-dark bg-info mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">BEST RECIPES</a>
+            <a class="navbar-brand" href="{{ route('public.home') }}">BEST RECIPES</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,7 +48,7 @@
     </div>
 
     <footer class="container">
-        &copy 2023 created by N. Katauskė
+        &copy 2023 created by Natalija K.
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
