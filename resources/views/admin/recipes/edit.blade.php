@@ -30,21 +30,10 @@
 
     <div class="col-12">
         <label class="form-label">Ingredients:</label>
-        <select name="ingredient_id[]" class="form-control @error('author_id') is-invalid @enderror" multiple>
-            <option value=""> </option>
-            @foreach($ingredients as $ingredient)
-                <option @if($recipe->ingredients->contains($ingredient->id)) selected @endif value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
-            @endforeach
-        </select>
-        @error('ingredient_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
-    </div><
-
-    <div class="form-group">
-        <label class="form-label">Ingredient:</label>
         <select name="ingredient_id[]" class="form-control @error('ingredient_id') is-invalid @enderror" multiple>
             <option value=""> </option>
             @foreach($ingredients as $ingredient)
-            <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                <option value="{{ $ingredient->id }}" @if($ingredients->contains($ingredient->id))selected @endif>{{ $ingredient->name }}</option>
             @endforeach
         </select>
         @error('ingredient_id')<div class="invalid-feedback">{{ $message }}</div>@enderror

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
 use App\Models\Admin\Ingredient;
+use App\Models\Admin\IngredientsRecipe;
 use App\Models\Front\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,6 +28,8 @@ class AdminRecipeController extends Controller
 
         $categories = Category::where('is_active', '=', 1)->get();
         $ingredients = Ingredient::where('is_active', '=', 1)->get();
+        // $ingredients = IngredientsRecipe::where('recipe_id', '=', '$recipe->id')->get();
+        // dd($ingredients);
 
         return view('admin/recipes/index', [
             'recipes' => $recipes->paginate(10),

@@ -24,7 +24,7 @@
                     </li>
                 </ul>
 
-               {{---> <ul class="navbar-nav ms-auto mb-2 mb-md-0 ">
+               <ul class="navbar-nav ms-auto mb-2 mb-md-0 ">
                     @auth
                     <li class="nav-item">
                         <a href="{{ route('profile') }}" class="nav-link" aria-current="page">{{ auth()->user()->name }} profile</a>
@@ -38,7 +38,7 @@
                         <a href="{{ route('logout') }}" class="nav-link" aria-current="page">Logout</a>
                         @endauth
                     </li>
-                    <li class="nav-item">
+                    {{---> <li class="nav-item">
                         @guest
                         <a href="{{ route('register') }}" class="nav-link" aria-current="page">Signup</a>
                         @endguest

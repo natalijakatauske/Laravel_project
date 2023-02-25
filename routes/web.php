@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminIngredientController;
 use App\Http\Controllers\Admin\AdminRecipeController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Front\RecipeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
@@ -22,11 +23,11 @@ use App\Http\Controllers\Front\HomeController;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class, 'index'])->name('public.home');
-
-Route::get('recipes', [RecipeController::class, 'index'])->name('public.recipes');
-Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('public.recipe.show');
-
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('public.home');
+    Route::get('recipes', [RecipeController::class, 'index'])->name('public.recipes');
+    Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('public.recipe.show');
+});
 
 Route::get('admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipes');
 Route::get('admin/recipe/create', [AdminRecipeController::class, 'create'])->name('admin.recipe.create');
@@ -51,3 +52,9 @@ Route::get('admin/ingredient/show/{id}', [AdminIngredientController::class, 'sho
 Route::get('admin/ingredient/edit/{id}', [AdminIngredientController::class, 'edit'])->name('admin.ingredient.edit');
 Route::post('admin/ingredient/edit/{id}', [AdminIngredientController::class, 'edit']);
 Route::delete('admin/ingredient/delete/{id}', [AdminIngredientController::class, 'delete'])->name('admin.ingredient.delete');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('login', [AuthController::class, 'show'])->name('login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+});

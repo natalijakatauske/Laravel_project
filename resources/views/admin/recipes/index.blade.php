@@ -46,7 +46,7 @@
         <th scope="col">Name</th>
         <th scope="col">Image</th>
         <th scope="col">Category</th>
-        {{---><th scope="col">Ingredients</th><---}}
+        <th scope="col">Ingredients</th>
         <th scope="col">Description</th>
         <th scope="col" width="100">Edit</th>
         <th scope="col" width="100">Delete</th>
@@ -70,13 +70,13 @@
             @endif
         </td>
 
-        {{---><td>
-            @if($recipe->ingredients)
-                @foreach($recipe->ingredients as $ingredient)
+        <td>
+            @if($ingredients)
+                @foreach($ingredients as $ingredient)
                     {{ $ingredient->name }} <br>
                 @endforeach
             @endif
-        </td><---}}
+        </td>
 
         <td>{{ $recipe->description }}</td>
         <td>
