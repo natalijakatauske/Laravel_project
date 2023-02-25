@@ -28,6 +28,7 @@
             </select>
         </div>
 
+
         <div class="col-12 mt-2">        
             <button type="submit" class="btn btn-secondary">Filter</button>  
             <a href="{{ route('admin.recipes') }}" class="btn btn-dark">Clear filter</a>
@@ -45,6 +46,7 @@
         <th scope="col">Name</th>
         <th scope="col">Image</th>
         <th scope="col">Category</th>
+        {{---><th scope="col">Ingredients</th><---}}
         <th scope="col">Description</th>
         <th scope="col" width="100">Edit</th>
         <th scope="col" width="100">Delete</th>
@@ -67,6 +69,15 @@
             {{ $recipe->category->name }}
             @endif
         </td>
+
+        {{---><td>
+            @if($recipe->ingredients)
+                @foreach($recipe->ingredients as $ingredient)
+                    {{ $ingredient->name }} <br>
+                @endforeach
+            @endif
+        </td><---}}
+
         <td>{{ $recipe->description }}</td>
         <td>
             <a href="{{ route('admin.recipe.edit', ['id' => $recipe->id]) }}" class="btn btn-secondary">Edit</a>

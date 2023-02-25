@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement('INSERT INTO ingredients_recipe (`recipe_id`, `ingredient_id`)
-        SELECT `id` as `recipe_id`, `ingredient_id` FROM recipes
-        WHERE ingredient_id IS NOT NULL');
+        // DB::statement('INSERT INTO ingredients_recipe (`recipe_id`, `ingredient_id`)
+        // SELECT `id` as `recipe_id`, `ingredient_id` FROM recipes
+        // WHERE ingredient_id IS NOT NULL');
+
+        // DB::statement('INSERT INTO ingredients_recipe (`recipe_id`)
+        // SELECT `id` as `recipe_id` FROM recipes');
+
+        // DB::statement('INSERT INTO ingredients_recipe (`ingredient_id`)
+        // SELECT `id` as `ingredient_id` FROM ingredients');
     }
 
     /**

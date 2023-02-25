@@ -30,16 +30,37 @@
 
     <div class="col-12">
         <label class="form-label">Ingredients:</label>
-        <select name="ingredent_id[]" class="form-control @error('author_id') is-invalid @enderror" multiple>
+        <select name="ingredient_id[]" class="form-control @error('author_id') is-invalid @enderror" multiple>
             <option value=""> </option>
-            @foreach($ingredents as $ingredent)
-                <option @if($recipe->ingredents->contains($ingredent->id)) selected @endif value="{{ $ingredent->id }}">{{ $ingredent->name }}</option>
+            @foreach($ingredients as $ingredient)
+                <option @if($recipe->ingredients->contains($ingredient->id)) selected @endif value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
             @endforeach
         </select>
-        @error('ingredent_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        @error('ingredient_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div><
+
+    <div class="form-group">
+        <label class="form-label">Ingredient:</label>
+        <select name="ingredient_id[]" class="form-control @error('ingredient_id') is-invalid @enderror" multiple>
+            <option value=""> </option>
+            @foreach($ingredients as $ingredient)
+            <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+            @endforeach
+        </select>
+        @error('ingredient_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
-    DESCRIPTION
+    
+    <div class="form-group">
+        <label class="form-label">Description:</label>
+        <input type="text" name="description" value="{{ old('name', $recipe->description) }}" class="form-control @error('description') is-invalid @enderror" placeholder="Description">
+    </div>
+
+
+    <div class="col-12">
+        <label class="form-label">Image:</label>
+        <input type="file" name="image" value="{{ old('image', $recipe->image) }}" class="form-control">
+    </div>
 
     <div class="form-group">
         <input type="checkbox" name="is_active" class="form-check-input" value="1" @if (old('is_active', $recipe->is_active)) checked @endif>

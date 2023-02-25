@@ -32,7 +32,7 @@ class AdminRecipeController extends Controller
             'recipes' => $recipes->paginate(10),
             'categories' => $categories,
             'ingredients' => $ingredients,
-            'category_id' => $request->query('category_id'), 
+            'category_id' => $request->query('category_id'),
             'name' => $request->query('name'), 
         ]);
     }
