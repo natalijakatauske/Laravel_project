@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index() //: View
     {
-        $recipes = Recipe::paginate(8);
+        $recipes = Recipe::orderBy('id', 'DESC')->paginate(8);
 
         return view('front/home', compact('recipes'));
     }

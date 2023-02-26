@@ -83,6 +83,6 @@ class AdminIngredientController extends Controller
         }
         $ingredient->delete();
         
-        return redirect('admin/ingredients')->with('success', 'Category removed successfully!');
+        return redirect('admin/ingredients')->with('success', 'Category was removed successfully!');
     }
 }

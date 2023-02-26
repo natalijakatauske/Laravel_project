@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminIngredientController;
 use App\Http\Controllers\Admin\AdminRecipeController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Front\RecipeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
@@ -19,14 +20,19 @@ use App\Http\Controllers\Front\HomeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Route::middleware(['guest'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('public.home');
+    Route::get('recipes', [RecipeController::class, 'index'])->name('public.recipes');
+    Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('public.recipe.show');
 // });
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('public.home');
-    Route::get('recipes', [RecipeController::class, 'index'])->name('public.recipes');
-    Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('public.recipe.show');
+    Route::get('login', [AuthController::class, 'show'])->name('login');
+    Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
 Route::get('admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipes');
@@ -53,8 +59,8 @@ Route::get('admin/ingredient/edit/{id}', [AdminIngredientController::class, 'edi
 Route::post('admin/ingredient/edit/{id}', [AdminIngredientController::class, 'edit']);
 Route::delete('admin/ingredient/delete/{id}', [AdminIngredientController::class, 'delete'])->name('admin.ingredient.delete');
 
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('login', [AuthController::class, 'show'])->name('login');
-    Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('admin/profile', [UserController::class, 'show'])->name('profile');
 });

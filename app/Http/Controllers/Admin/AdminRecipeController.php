@@ -54,7 +54,7 @@ class AdminRecipeController extends Controller
     }
 
 
-    public function create(): View
+    public function create(): RedirectResponse|View
     {
         $ingredients = Ingredient::all();
         $categories = Category::where('is_active', '=', 1)->get();
@@ -145,6 +145,6 @@ class AdminRecipeController extends Controller
         }
         $recipe->delete();
         
-        return redirect('admin/recipes')->with('success', 'Category removed successfully!');
+        return redirect('admin/recipes')->with('success', 'Recipe was removed successfully!');
     }
 }

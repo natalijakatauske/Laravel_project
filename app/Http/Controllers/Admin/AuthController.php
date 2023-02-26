@@ -27,7 +27,7 @@ class AuthController extends Controller
         if (Auth::attempt($data, $request->get('remember'))) {
             $request->session()->regenerate();
 
-            return redirect(route('profile'));// nepadarytas vartotojo profilis !!!!!!
+            return redirect(route('profile'));
         }
 
         return back()->withErrors(['email' => 'Invalid data provided']);

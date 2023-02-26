@@ -56,7 +56,7 @@ class AdminCategoryController extends Controller
             // $category->is_active = $request->post('is_active');
             $category->save();
 
-            return redirect('admin/categories')->with('success', 'Category updated successfully!');
+            return redirect('admin/categories')->with('success', 'Category was updated successfully!');
         }
 
         $categories = Category::where('id', null)->get();
@@ -78,6 +78,6 @@ class AdminCategoryController extends Controller
         }
         $category->delete();
         
-        return redirect('admin/categories')->with('success', 'Category removed successfully!');
+        return redirect('admin/categories')->with('success', 'Category was removed successfully!');
     }
 }
