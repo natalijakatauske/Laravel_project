@@ -6,7 +6,7 @@
 
 <h1>Create new recipe</h1>
 
-<form action="{{ route('admin.recipe.create') }}" method="post" class="row g-3">
+<form action="{{ url('admin/recipe/store') }}" method="post" class="row g-3">
 
     <!-- @if ($errors->any())
      <div class="alert alert-danger">
@@ -41,7 +41,7 @@
 
     <div class="form-group">
         <label class="form-label">Category:</label>
-        <select name="category_id[]" class="form-control @error('ingredient_id') is-invalid @enderror" multiple>
+        <select name="category_id" class="form-control @error('ingredient_id') is-invalid @enderror" multiple>
             <option value=""> </option>
             @foreach($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -56,8 +56,13 @@
     </div>
 
     <div class="form-group">
-        <input type="checkbox" name="Active" class="form-check-input" value="1" @if (old('is_active')) checked @endif>
-        <label class="form-check-label">Active</label>
+        <label class="form-label">Image:</label>
+        <input type="file" name="image" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <input type="checkbox" name="is_active" class="form-check-input" value="1" @if (old('is_active')) checked @endif>
+        <label class="form-check-label">Active?</label>
     </div>
     <div class="col-12">
         <button type="submit" class="btn btn-secondary">Save</button>

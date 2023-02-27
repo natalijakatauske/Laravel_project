@@ -71,8 +71,8 @@
         </td>
 
         <td>
-            @if($ingredients)
-                @foreach($ingredients as $ingredient)
+            @if($recipe->ingredients)
+                @foreach($recipe->ingredients as $ingredient)
                     {{ $ingredient->name }} <br>
                 @endforeach
             @endif

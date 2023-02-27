@@ -21,7 +21,7 @@ class Recipe extends Model
 
     public function ingredients(): BelongsToMany
     {
-        return $this->belongsToMany(Ingridient::class);
+        return $this->belongsToMany(Ingredient::class);
     }
 
     public function category(): BelongsTo

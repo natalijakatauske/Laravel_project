@@ -54,10 +54,10 @@ class AdminRecipeController extends Controller
     }
 
 
-    public function create(): RedirectResponse|View
+    public function create(): View
     {
         $ingredients = Ingredient::all();
-        $categories = Category::where('is_active', '=', 1)->get();
+        $categories = Category::all();
 
         return view('admin/recipes/create', [
             'ingredients' => $ingredients,
@@ -65,10 +65,10 @@ class AdminRecipeController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse|View
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' =>'required|max:255',
+            'name' =>'required|max:50',
             'category_id' => 'required',
             'image' => [File::types([
                 'jpg', 'jpeg', 'jfif', 'webp', 'avif', 'svg', 'gif', 'png', 'tif', 'tiff', 'bmp'
@@ -78,24 +78,29 @@ class AdminRecipeController extends Controller
         $recipe = Recipe::create($request->all());
 
         $file = $request->file('image');
-        $path = Storage::disk('public')->putFile('recipe_images', $file);
-        $recipe->image = $path;
-        $recipe->save();
+        if ($file) {
+            $path = $file->store('recipe_images');
+            $recipe->image = $path;
+            $recipe->save();
+        }
+        // $path = Storage::disk('public')->putFile('recipe_images', $file);
+        
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
+        dd($ingredients);
         $recipe->ingredients()->attach($ingredients);
         // $recipe->is_active = $request->post('is_active', false);
 
-        return redirect('admin/recipes')->with('success', 'Book created successfully!');
+        return redirect('admin/recipes')->with('success', 'Recipe was created successfully!');
 
     }
 
-    public function edit(int $id, Request $request)
+    public function edit(int $id, Request $request): View|RedirectResponse
     {
         $recipe = Recipe::find($id);
 
         $ingredients = Ingredient::all();
-        $categories = Category::where('is_active', '=', 1)->get();
+        $categories = Category::all();
 
         if ($recipe === null) {
             abort(404);
@@ -103,7 +108,7 @@ class AdminRecipeController extends Controller
 
         if ($request->isMethod('post')) {
             $request->validate([
-                'name' => 'required|max:255',
+                'name' => 'required|max:50',
                 'category_id' => 'required',
                 'ingredient_id' => 'required',
                 'image' => [File::types([

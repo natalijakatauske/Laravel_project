@@ -12,10 +12,10 @@ class AdminIngredientController extends Controller
 {
     public function index(): View
     {
-        $ingredients = Ingredient::where('is_active', '=', 1);
+        $ingredients = Ingredient::paginate(10);
 
         return view('admin/ingredients/index', [
-            'ingredients' => $ingredients->paginate(10)
+            'ingredients' => $ingredients
         ]);
     }
 

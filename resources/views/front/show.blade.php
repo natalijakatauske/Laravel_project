@@ -24,10 +24,15 @@
                     @endif
                 </div>
                 <div class="card-text">Ingredients:
-                    @if($recipe->ingredient)
-                        {{ $recipe->ingredient->name }}
+                    @if($recipe->ingredients)
+                        @foreach($recipe->ingredients as $ingredient)
+                            {{ $ingredient->name . ', ' }}
+                        @endforeach
                     @endif
                 </div>
+                
+
+
             </div>
         </div>
     </div>
