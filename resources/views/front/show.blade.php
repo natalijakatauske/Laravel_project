@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem;">
             @if ($recipe->image)
-                <img src="{{ asset($recipe->image) }}">
+                <img src="{{ asset($recipe->image) }}" style="height:20rem; width:15rem; margin:auto;">
             @else
                 No image
             @endif

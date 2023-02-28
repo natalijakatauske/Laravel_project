@@ -14,7 +14,7 @@
                     <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem; height:12rem">
                         <div>
                             @if ($recipe->image)
-                                <img src="{{ asset('storage/' . $recipe->image) }}" class="img-fluid card-img-top">
+                                <img src="{{ asset($recipe->image) }}" class="img-fluid card-img-center">
                             @else
                                 No image
                             @endif

@@ -6,7 +6,7 @@
 
 <h1>Edit recipe "{{ $recipe->name }}"</h1>
 
-<form action="{{ route('admin.recipe.edit', ['id' => $recipe->id]) }}" method="post" class="row g-3">
+<form action="{{ route('admin.recipe.edit', ['id' => $recipe->id]) }}" method="post" class="row g-3" enctype="multipart/form-data">
 
     @csrf
     <div class="form-group">
@@ -33,7 +33,7 @@
         <select name="ingredient_id[]" class="form-control @error('ingredient_id') is-invalid @enderror" multiple>
             <option value=""> </option>
             @foreach($ingredients as $ingredient)
-                <option value="{{ $ingredient->id }}" @if($ingredients->contains($ingredient->id))selected @endif>{{ $ingredient->name }}</option>
+                <option value="{{ $ingredient->id }}" @if($recipe->ingredients->contains($ingredient->id))selected @endif>{{ $ingredient->name }}</option>
             @endforeach
         </select>
         @error('ingredient_id')<div class="invalid-feedback">{{ $message }}</div>@enderror

@@ -6,7 +6,7 @@
 
 <h1>Create new recipe</h1>
 
-<form action="{{ url('admin/recipe/store') }}" method="post" class="row g-3">
+<form action="{{ url('admin/recipe/store') }}" method="post" class="row g-3" enctype="multipart/form-data">
 
     <!-- @if ($errors->any())
      <div class="alert alert-danger">

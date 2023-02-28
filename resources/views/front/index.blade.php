@@ -35,10 +35,10 @@
         <div class="row">
             @foreach($recipes as $recipe)
                 <div class="col-4">
-                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem; height:12rem">
+                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem; height:20rem">
                         <div>
                             @if ($recipe->image)
-                                <img src="{{ asset('storage/' . $recipe->image) }}" class="img-fluid card-img-top">
+                                <img src="{{ asset($recipe->image) }}" class="img-fluid card-img-top" style="height:10rem; width:8rem; margin:auto;">
                             @else
                                 No image
                             @endif
