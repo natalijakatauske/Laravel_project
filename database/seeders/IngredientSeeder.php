@@ -132,5 +132,29 @@ class IngredientSeeder extends Seeder
             'name' => 'Apple',
             'is_active' => 1,
         ]);
+        Ingredient::create([
+            'name' => 'Apple',
+            'is_active' => 1,
+        ]);
+        Ingredient::create([
+            'name' => 'Salt',
+            'is_active' => 1,
+        ]);
+        Ingredient::create([
+            'name' => 'Egg',
+            'is_active' => 1,
+        ]);
+        Ingredient::create([
+            'name' => 'Olive Oil',
+            'is_active' => 1,
+        ]);
+        Ingredient::create([
+            'name' => 'Lemon',
+            'is_active' => 1,
+        ]);
+        Ingredient::create([
+            'name' => 'Dijon mustard',
+            'is_active' => 1,
+        ]);
     }
 }

@@ -8,7 +8,7 @@
 
 <form action="{{ url('admin/recipe/store') }}" method="post" class="row g-3" enctype="multipart/form-data">
 
-    <!-- @if ($errors->any())
+    @if ($errors->any())
      <div class="alert alert-danger">
          <ul>
              @foreach ($errors->all() as $error)
@@ -16,7 +16,7 @@
              @endforeach
          </ul>
      </div>
- @endif -->
+ @endif
 
     @csrf
     <div class="form-group">

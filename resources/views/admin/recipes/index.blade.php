@@ -59,7 +59,7 @@
         </td>
         <td>
             @if ($recipe->image)
-                <img src="{{ asset( $recipe->image) }}" class="img-fluid">
+                <img src="{{ asset( $recipe->image) }}" class="img-fluid" style=" width:10rem; margin:auto;">
             @else
                 No image
             @endif

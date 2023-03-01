@@ -24,7 +24,11 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 1,
-                'ingredient_id' => 11,
+                'ingredient_id' => 4,
+            ],
+            [
+                'recipe_id' => 1,
+                'ingredient_id' => 18,
             ],
             [
                 'recipe_id' => 1,
@@ -36,11 +40,19 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 2,
-                'ingredient_id' => 10,
+                'ingredient_id' => 2,
             ],
             [
                 'recipe_id' => 2,
-                'ingredient_id' => 26,
+                'ingredient_id' => 7,
+            ],
+            [
+                'recipe_id' => 2,
+                'ingredient_id' => 11,
+            ],
+            [
+                'recipe_id' => 2,
+                'ingredient_id' => 27,
             ],
             [
                 'recipe_id' => 3,
@@ -48,15 +60,27 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 3,
-                'ingredient_id' => 5,
+                'ingredient_id' => 3,
+            ],
+            [
+                'recipe_id' => 3,
+                'ingredient_id' => 18,
             ],
             [
                 'recipe_id' => 3,
                 'ingredient_id' => 4,
             ],
             [
+                'recipe_id' => 3,
+                'ingredient_id' => 5,
+            ],
+            [
                 'recipe_id' => 4,
                 'ingredient_id' => 5,
+            ],
+            [
+                'recipe_id' => 4,
+                'ingredient_id' => 4,
             ],
             [
                 'recipe_id' => 4,
@@ -64,7 +88,11 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 4,
-                'ingredient_id' => 6,
+                'ingredient_id' => 8,
+            ],
+            [
+                'recipe_id' => 4,
+                'ingredient_id' => 25,
             ],
             [
                 'recipe_id' => 5,
@@ -76,11 +104,15 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 5,
-                'ingredient_id' => 26,
+                'ingredient_id' => 25,
             ],
             [
                 'recipe_id' => 5,
                 'ingredient_id' => 21,
+            ],
+            [
+                'recipe_id' => 5,
+                'ingredient_id' => 18,
             ],
             [
                 'recipe_id' => 6,
@@ -92,11 +124,23 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 6,
+                'ingredient_id' => 1,
+            ],
+            [
+                'recipe_id' => 6,
                 'ingredient_id' => 10,
             ],
             [
                 'recipe_id' => 6,
-                'ingredient_id' => 2,
+                'ingredient_id' => 12,
+            ],
+            [
+                'recipe_id' => 6,
+                'ingredient_id' => 25,
+            ],
+            [
+                'recipe_id' => 6,
+                'ingredient_id' => 18,
             ],
             [
                 'recipe_id' => 7,
@@ -104,15 +148,23 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 7,
-                'ingredient_id' => 9,
-            ],
-            [
-                'recipe_id' => 7,
                 'ingredient_id' => 6,
             ],
             [
                 'recipe_id' => 7,
+                'ingredient_id' => 5,
+            ],
+            [
+                'recipe_id' => 7,
                 'ingredient_id' => 12,
+            ],
+            [
+                'recipe_id' => 7,
+                'ingredient_id' => 18,
+            ],
+            [
+                'recipe_id' => 7,
+                'ingredient_id' => 25,
             ],
             [
                 'recipe_id' => 8,
@@ -129,6 +181,10 @@ class IngredientsRecipeSeeder extends Seeder
             [
                 'recipe_id' => 8,
                 'ingredient_id' => 27,
+            ],
+            [
+                'recipe_id' => 8,
+                'ingredient_id' => 25,
             ],
             [
                 'recipe_id' => 9,
@@ -151,6 +207,10 @@ class IngredientsRecipeSeeder extends Seeder
                 'ingredient_id' => 27,
             ],
             [
+                'recipe_id' => 9,
+                'ingredient_id' => 28,
+            ],
+            [
                 'recipe_id' => 10,
                 'ingredient_id' => 14,
             ],
@@ -167,6 +227,10 @@ class IngredientsRecipeSeeder extends Seeder
                 'ingredient_id' => 26,
             ],
             [
+                'recipe_id' => 10,
+                'ingredient_id' => 25,
+            ],
+            [
                 'recipe_id' => 11,
                 'ingredient_id' => 15,
             ],
@@ -180,7 +244,11 @@ class IngredientsRecipeSeeder extends Seeder
             ],
             [
                 'recipe_id' => 11,
-                'ingredient_id' => 21,
+                'ingredient_id' => 8,
+            ],
+            [
+                'recipe_id' => 11,
+                'ingredient_id' => 28,
             ],
             [
                 'recipe_id' => 12,
@@ -195,6 +263,10 @@ class IngredientsRecipeSeeder extends Seeder
                 'ingredient_id' => 20,
             ],
             [
+                'recipe_id' => 12,
+                'ingredient_id' => 27,
+            ],
+            [
                 'recipe_id' => 13,
                 'ingredient_id' => 24,
             ],
@@ -205,6 +277,10 @@ class IngredientsRecipeSeeder extends Seeder
             [
                 'recipe_id' => 13,
                 'ingredient_id' => 20,
+            ],
+            [
+                'recipe_id' => 13,
+                'ingredient_id' => 27,
             ],
         ];
  

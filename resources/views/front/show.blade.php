@@ -17,22 +17,21 @@
         </div>
         <div class="col card shadow p-3 mb-5 bg-body-tertiary rounded" style="margin: 1rem;">
             <div class="card-body">
-                <h4 class="card-title" style="font-weight:bold">{{ $recipe->name }}</h4>
-                <div class="card-text">Category: 
+                <h4 class="card-title" style="font-weight:bold;">{{ $recipe->name }}</h4>
+                <div class="card-text"style="margin-top:1rem; font-weight:bold">Category:</div>
+                <div>
                     @if($recipe->category)
                         {{ $recipe->category->name }}
                     @endif
                 </div>
-                <div class="card-text">Ingredients:
+                <div>
+                <div class="card-text" style="margin-top:1rem; font-weight:bold">Ingredients:</div>
                     @if($recipe->ingredients)
                         @foreach($recipe->ingredients as $ingredient)
-                            {{ $ingredient->name . ', ' }}
+                            {{ $ingredient->name }} <br>
                         @endforeach
                     @endif
                 </div>
-                
-
-
             </div>
         </div>
     </div>
