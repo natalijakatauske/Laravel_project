@@ -88,11 +88,13 @@ class AdminRecipeController extends Controller
             $recipe->ingredients()->attach($request->post('ingredient_id'));
             $recipe->is_active = $request->post('is_active', false);
 
-            $recipe->fill($request->all());
             $image = $request->file('image');
-            $path = $image->store('recipe_images');
-            // Storage::disk('public')->put('katalogas', $file);
-            $recipe->image = $path;
+            if ($image) {
+                // $path = $image->store('recipe_images');
+                // Storage::disk('public')->putFile('recipe_images', $image);
+                $path = Storage::disk('public')->put('recipe_images', $image);
+                $recipe->image = $path;
+            }
             
             $recipe->save();
         
@@ -124,11 +126,13 @@ class AdminRecipeController extends Controller
         $recipe = Recipe::create($request->all());
 
         $image = $request->file('image');
-        // $path = $image->store('recipe_images');
-        // Storage::disk('public')->putFile('recipe_images', $image);
-        $path = Storage::disk('public')->put('recipe_images', $image);
-        $recipe->image = $path;
-        $recipe->save();
+        if ($image) {
+            // $path = $image->store('recipe_images');
+            // Storage::disk('public')->putFile('recipe_images', $image);
+            $path = Storage::disk('public')->put('recipe_images', $image);
+            $recipe->image = $path;
+            $recipe->save();
+        }
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
         // dd($ingredients);
@@ -142,6 +146,7 @@ class AdminRecipeController extends Controller
     public function delete(int $id)
     {
         $recipe = Recipe::find($id);
+        $recipe->ingredients()->detach();
 
         if ($recipe === null) {
             abort(404);
