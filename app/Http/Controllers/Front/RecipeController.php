@@ -11,18 +11,9 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    // public function index(): View
-    // {
-    //     $recipes = Recipe::paginate(20);
-
-    //     return view('recipes/index', [
-    //         'recipes' => $recipes
-    //     ]);
-    // }
-
     public function index(Request $request): View
     {
-        $recipes = Recipe::query();
+        $recipes = Recipe::where('is_active', '=', 1);
         
         if ($request->query('name')) {
             $recipes->where('name', 'like', '%' . $request->query('name') . '%');
@@ -32,12 +23,10 @@ class RecipeController extends Controller
         }
 
         $categories = Category::where('is_active', '=', 1)->get();
-        $ingredients = Ingredient::where('is_active', '=', 1)->get();
 
         return view('front/index', [
             'recipes' => $recipes->paginate(9),
             'categories' => $categories,
-            'ingredients' => $ingredients,
             'category_id' => $request->query('category_id'), 
             'name' => $request->query('name'), 
         ]);

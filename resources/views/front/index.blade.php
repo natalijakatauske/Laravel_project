@@ -62,7 +62,7 @@
 
     <div class="row">
         <div class="col">
-            {{ $recipes->links()}}
+            {{ $recipes->links('pagination::bootstrap-4')}}
         </div>
     </div>
 

@@ -22,14 +22,13 @@ class AdminRecipeController extends Controller
         if ($request->query('name')) {
             $recipes->where('name', 'like', '%' . $request->query('name') . '%');
         }
+
         if ($request->query('category_id')) {
             $recipes->where('category_id', '=', $request->query('category_id'));
         }
 
         $categories = Category::where('is_active', '=', 1)->get();
         $ingredients = Ingredient::where('is_active', '=', 1)->get();
-        // $ingredients = IngredientsRecipe::where('recipe_id', '=', '$recipe->id')->get();
-        // dd($ingredients);
 
         return view('admin/recipes/index', [
             'recipes' => $recipes->paginate(10),
@@ -90,16 +89,11 @@ class AdminRecipeController extends Controller
 
             $image = $request->file('image');
             if ($image) {
-                // $path = $image->store('recipe_images');
-                // Storage::disk('public')->putFile('recipe_images', $image);
                 $path = Storage::disk('public')->put('recipe_images', $image);
                 $recipe->image = $path;
             }
             
             $recipe->save();
-        
-            // $ingredients = Ingredient::find($request->post('ingredient_id'));
-            // $recipe->ingredients()->attach($ingredients);
         
             return redirect('admin/recipes')->with('success', 'Recipe uptades successfully!!!');        
         }
@@ -113,7 +107,6 @@ class AdminRecipeController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        // dd($request);
         $request->validate([
             'name' =>'required|max:50',
             'category_id' => 'required',
@@ -124,23 +117,20 @@ class AdminRecipeController extends Controller
             ]);
 
         $recipe = Recipe::create($request->all());
+        $recipe->is_active = $request->post('is_active', false);
 
         $image = $request->file('image');
         if ($image) {
-            // $path = $image->store('recipe_images');
-            // Storage::disk('public')->putFile('recipe_images', $image);
             $path = Storage::disk('public')->put('recipe_images', $image);
             $recipe->image = $path;
             $recipe->save();
         }
 
         $ingredients = Ingredient::find($request->post('ingredient_id'));
-        // dd($ingredients);
         $recipe->ingredients()->attach($ingredients);
-        // $recipe->is_active = $request->post('is_active', false);
+        $recipe->is_active = $request->post('is_active', false);
 
         return redirect('admin/recipes')->with('success', 'Recipe was created successfully!');
-
     }
 
     public function delete(int $id)

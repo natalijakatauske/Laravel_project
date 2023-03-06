@@ -24,7 +24,7 @@ use App\Http\Controllers\Front\HomeController;
 //     return view('welcome');
 // });
 
-Route::get('/home', [HomeController::class, 'index'])->name('public.home');
+Route::get('/', [HomeController::class, 'index'])->name('public.home');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('recipes', [RecipeController::class, 'index'])->name('public.recipes');
@@ -33,7 +33,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('login', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role'])->group(function () {
     Route::get('admin/recipes', [AdminRecipeController::class, 'index'])->name('admin.recipes');
     Route::get('admin/recipe/create', [AdminRecipeController::class, 'create'])->name('admin.recipe.create');
     Route::post('admin/recipe/store', [AdminRecipeController::class, 'store']);

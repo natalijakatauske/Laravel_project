@@ -25,6 +25,7 @@ class AdminCategoryController extends Controller
         $request->validate(
             ['name' => 'required|min:3|max:20']
         );
+
         Category::create($request->all());
 
         return redirect('admin/categories')
@@ -43,6 +44,7 @@ class AdminCategoryController extends Controller
     public function edit(int $id, Request $request): View|RedirectResponse
     {
         $category = Category::find($id);
+
         if ($category === null) {
             abort(404);
         }
@@ -53,7 +55,7 @@ class AdminCategoryController extends Controller
             );
 
             $category->fill($request->all());
-            // $category->is_active = $request->post('is_active');
+            $category->is_active = $request->post('is_active', false);
             $category->save();
 
             return redirect('admin/categories')->with('success', 'Category was updated successfully!');
@@ -65,8 +67,6 @@ class AdminCategoryController extends Controller
             'category' => $category,
             'categories' => $categories,
         ]);
-
-        // return view('admin/categories/edit', compact('categories'));
     }
 
     public function delete(int $id)

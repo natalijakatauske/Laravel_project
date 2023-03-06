@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index() //: View
+    public function index()
     {
-        $recipes = Recipe::orderBy('id', 'DESC')->paginate(8);
+        $recipes = Recipe::where('is_active', '=', 1)->orderBy('id', 'DESC')->paginate(8);
 
         return view('front/home', compact('recipes'));
     }

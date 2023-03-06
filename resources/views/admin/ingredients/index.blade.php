@@ -45,7 +45,7 @@
 
 <div class="row">
     <div class="col">
-        {{ $ingredients->links()}}
+        {{ $ingredients->links('pagination::bootstrap-4')}}
     </div>
 </div>
 @endsection

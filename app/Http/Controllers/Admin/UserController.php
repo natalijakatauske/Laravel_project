@@ -12,10 +12,6 @@ class UserController extends Controller
 {
     public function show(): View|RedirectResponse
     {
-    //    if (!Auth::user()) {
-    //        return redirect(route('login'));
-    //    }
-
         return view('user/show', ['user' => Auth::user()]);
     }
 }

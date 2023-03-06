@@ -19,11 +19,6 @@ class AdminIngredientController extends Controller
         ]);
     }
 
-    // public function show(Ingredient $ingredient): View
-    // {
-    //     return view('admin/ingredient/show', compact('ingredient'));
-    // }
-
     public function store(Request $request): RedirectResponse
     {
         $request->validate(
@@ -48,6 +43,7 @@ class AdminIngredientController extends Controller
     public function edit(int $id, Request $request): View|RedirectResponse
     {
         $ingredient = Ingredient::find($id);
+
         if ($ingredient === null) {
             abort(404);
         }
@@ -58,7 +54,7 @@ class AdminIngredientController extends Controller
             );
 
             $ingredient->fill($request->all());
-            // $ingredient->is_active = $request->post('is_active');
+            $ingredient->is_active = $request->post('is_active', false);
             $ingredient->save();
 
             return redirect('admin/ingredients')->with('success', 'Category updated successfully!');
@@ -70,8 +66,6 @@ class AdminIngredientController extends Controller
             'ingredient' => $ingredient,
             'ingredients' => $ingredients,
         ]);
-
-        // return view('admin/ingredients/edit', compact('ingredients'));
     }
 
     public function delete(int $id)

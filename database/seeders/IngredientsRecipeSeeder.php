@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin\IngredientsRecipe;
+use App\Models\Admin\IngredientRecipe;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -285,7 +285,7 @@ class IngredientsRecipeSeeder extends Seeder
         ];
  
         foreach ($ingredients_recipe as $item) {
-            IngredientsRecipe::create([
+            IngredientRecipe::create([
                 'recipe_id' => $item['recipe_id'],
                 'ingredient_id' => $item['ingredient_id'],
             ]);

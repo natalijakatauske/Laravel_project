@@ -12,14 +12,4 @@ class IngredientRecipe extends Model
     use HasFactory;
 
     public $table = 'ingredient_recipe';
-
-    // public function ingredients(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Ingredient::class);
-    // }
-
-    // public function recipes(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Recipe::class);
-    // }
 }
